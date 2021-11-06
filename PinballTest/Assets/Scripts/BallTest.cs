@@ -10,7 +10,8 @@ public class BallTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>(); 
+        rb.maxAngularVelocity = 50;
         rb.AddForce(transform.forward * startForce, ForceMode.Impulse);
     }
 
