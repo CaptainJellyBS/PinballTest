@@ -2,10 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
-{
+{    
     public static GameManager Instance { get; private set; }
+
+    long score;
+    public long Score
+    {
+        get
+        {
+            return score;
+        }
+        set
+        {
+            score = value;
+            scoreText.text = score.ToString();
+        }
+    }
+    [Header("UI elements")]
+    public Text scoreText;
+    public Text gameOverText;
+
+    [Header("Other")]
     public Vector3 ballSpawnPos;
     public GameObject ball;
     public int amountOfBallsLeft = 3;
@@ -18,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Score = 0;
         SpawnBall();
     }
 
@@ -59,9 +80,15 @@ public class GameManager : MonoBehaviour
         Instantiate(ball, ballSpawnPos, Quaternion.identity);
     }
 
+    public void AddScore(int _score)
+    {
+        Score += _score;
+    }
+
     public void GameOver()
     {
         Debug.Log("Game Over");
+        gameOverText.gameObject.SetActive(true);
     }
     #region debug
 

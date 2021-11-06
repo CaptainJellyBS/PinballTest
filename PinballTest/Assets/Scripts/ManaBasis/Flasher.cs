@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flasher : MonoBehaviour
 {
     Renderer[] renderers;
-
+    bool canFlash = true;
     private void Start()
     {
         renderers = GetComponentsInChildren<Renderer>();
@@ -38,9 +38,14 @@ public class Flasher : MonoBehaviour
 
     IEnumerator FlashC(Color color, float offTime, float onTime, float totalDuration)
     {
-        foreach(Renderer r in renderers)
+        if (!canFlash) { yield break; }
+        canFlash = false;
+        Dictionary<Renderer, Color> origColors = new Dictionary<Renderer, Color>();
+
+        foreach (Renderer r in renderers)
         {
             r.material.EnableKeyword("_EMISSION");
+            origColors.Add(r, r.material.color);
         }
 
         float t = 0;
@@ -48,16 +53,21 @@ public class Flasher : MonoBehaviour
         {
             t += Time.deltaTime;
 
+
+
             foreach (Renderer r in renderers)
             {
                 r.material.SetColor("_EmissionColor", color);
+                r.material.color = color;
             }
+
             yield return new WaitForSeconds(onTime);
             t += onTime;
 
             foreach (Renderer r in renderers)
             {
                 r.material.SetColor("_EmissionColor", Color.black);
+                r.material.color = origColors[r];
             }
             yield return new WaitForSeconds(offTime);
             t += offTime;
@@ -66,8 +76,11 @@ public class Flasher : MonoBehaviour
         foreach (Renderer r in renderers)
         {
             r.material.SetColor("_EmissionColor", Color.black);
+            r.material.color = origColors[r];
+
             r.material.DisableKeyword("_EMISSION");
 
         }
+        canFlash = true;
     }
 }
