@@ -9,6 +9,7 @@ public class Flipper : MonoBehaviour
     public Transform forcePos;
     public float rotation;
     public KeyCode button;
+    public AudioSource flipperUp, flipperDown;
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class Flipper : MonoBehaviour
             JointSpring fuckThis = hj.spring;
             fuckThis.targetPosition = rotation;
             hj.spring = fuckThis;
+            flipperUp.Play();
         }
 
         if(Input.GetKeyUp(button))
@@ -35,7 +37,9 @@ public class Flipper : MonoBehaviour
             JointSpring fuckThis = hj.spring;
             fuckThis.targetPosition = 0;
             hj.spring = fuckThis;
+            flipperDown.Play();
+
         }
-        
+
     }
 }

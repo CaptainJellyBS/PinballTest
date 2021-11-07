@@ -142,11 +142,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1139680241571509571, guid: 576862bdd1690a24582ee886ac1dbfcf,
         type: 3}
-      propertyPath: rotation
-      value: -65
-      objectReference: {fileID: 0}
-    - target: {fileID: 1139680241571509571, guid: 576862bdd1690a24582ee886ac1dbfcf,
-        type: 3}
       propertyPath: minRotation
       value: 0
       objectReference: {fileID: 0}
