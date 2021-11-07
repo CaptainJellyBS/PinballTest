@@ -9,6 +9,15 @@ public class TriggerEvent : MonoBehaviour
 
     public UnityEvent onTriggerEnter, onTriggerExit;
 
+    private void Start()
+    {
+        //Make triggers invisible
+        foreach(Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            r.enabled = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         onTriggerEnter.Invoke();

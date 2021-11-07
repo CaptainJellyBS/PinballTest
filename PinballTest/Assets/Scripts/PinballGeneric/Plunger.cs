@@ -5,27 +5,37 @@ using UnityEngine;
 public class Plunger : MonoBehaviour
 {
     public KeyCode plungeButton = KeyCode.Space;
-    public float pullSpeed;
-    ConstantForce cf;
-    Vector3 standardForce;
-    public Vector3 forceAccel;
+    SpringJoint sj;
+    Rigidbody rb;
+    public float pullForce;
+    
+    float origSpring;
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        cf = GetComponent<ConstantForce>();
-        standardForce = cf.relativeForce;
+        sj = GetComponent<SpringJoint>();        
+        rb = GetComponent<Rigidbody>();
+        origSpring = sj.spring;
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if (Input.GetKeyDown(plungeButton)) { cf.enabled = false; cf.relativeForce = standardForce; }
-        
-        if (Input.GetKey(plungeButton) && transform.localPosition.z > -7.5f) 
-        { 
-            transform.Translate(-transform.forward * pullSpeed * Time.deltaTime);
-            cf.relativeForce += forceAccel * Time.deltaTime;
+        if(Input.GetKeyDown(plungeButton))
+        {
+            sj.spring = 0;
         }
         
-        if (Input.GetKeyUp(plungeButton)) { cf.enabled = true; }
+        if(Input.GetKey(plungeButton))
+        {
+            //rb.AddForce(-transform.forward * pullForce);
+            rb.MovePosition(transform.position - transform.forward * pullForce * Time.deltaTime);
+        }
+        
+        if (Input.GetKeyUp(plungeButton))
+        {
+            sj.spring = origSpring;
+        }
     }
 }

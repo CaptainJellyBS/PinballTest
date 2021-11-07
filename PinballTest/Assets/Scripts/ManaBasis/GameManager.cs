@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     public Text gameOverText;
 
     [Header("Other")]
-    public Vector3 ballSpawnPos;
+    //public Vector3 ballSpawnPos;
+    public Transform ballSpawnPos;
     public GameObject ball;
     public int amountOfBallsLeft = 3;
     public int activeBalls = 0;
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
         if(amountOfBallsLeft <= 0) { GameOver(); return; }
         amountOfBallsLeft--;
         activeBalls++;
-        Instantiate(ball, ballSpawnPos, Quaternion.identity);
+        Instantiate(ball, ballSpawnPos.position, ballSpawnPos.rotation);
     }
 
     public void AddScore(int _score)
