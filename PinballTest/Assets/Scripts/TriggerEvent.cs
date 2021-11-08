@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class TriggerEvent : MonoBehaviour
 {
     public bool destroyColliderOnEnter = false;
+    public bool destroyColliderOnExit = false;
 
     public UnityEvent onTriggerEnter, onTriggerExit;
 
@@ -27,5 +28,7 @@ public class TriggerEvent : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         onTriggerExit.Invoke();
+        if (destroyColliderOnExit) { Destroy(other.gameObject); }
+
     }
 }
