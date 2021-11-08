@@ -274,7 +274,7 @@ MonoBehaviour:
   - {fileID: 8115407521933390335}
   hitLights:
   - {fileID: 6210221964862957344}
-  bumperForce: 40
+  bumperForce: 120
   hitColor: {r: 0.36111116, g: 1, b: 0, a: 1}
 --- !u!1 &4120731545110019053
 GameObject:

@@ -91,6 +91,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
         gameOverText.gameObject.SetActive(true);
     }
+
+    public void DebugLog(string log)
+    {
+        Debug.Log(log);
+    }
     #region debug
 
     #endregion
