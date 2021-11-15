@@ -5,12 +5,13 @@ using UnityEngine;
 public class Flasher : MonoBehaviour
 {
     Renderer[] renderers;
-    bool canFlash = true;
+    bool canFlash = false;
     bool active = true;
 
     private void Start()
     {
         renderers = GetComponentsInChildren<Renderer>();
+        canFlash = true;
     }
 
     public void Flash(Color color, float FlashTime)
