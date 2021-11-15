@@ -6,6 +6,8 @@ public class Flasher : MonoBehaviour
 {
     Renderer[] renderers;
     bool canFlash = true;
+    bool active = true;
+
     private void Start()
     {
         renderers = GetComponentsInChildren<Renderer>();
@@ -38,7 +40,7 @@ public class Flasher : MonoBehaviour
 
     IEnumerator FlashC(Color color, float offTime, float onTime, float totalDuration)
     {
-        if (!canFlash) { yield break; }
+        if (!canFlash || !active) { yield break; }
         canFlash = false;
         Dictionary<Renderer, Color> origColors = new Dictionary<Renderer, Color>();
 
@@ -82,5 +84,10 @@ public class Flasher : MonoBehaviour
 
         }
         canFlash = true;
+    }
+
+    public void EnableFlasher(bool on)
+    {
+        active = on;
     }
 }

@@ -7,7 +7,7 @@ public class DropTarget : MonoBehaviour
 {
     public GameObject up, down;
     public GameObject[] litLights;
-    public UnityEvent onHit;
+    public UnityEvent onHit, onRaise, onDrop;
     public bool isRaised, isLit;
 
     private void Start()
@@ -21,6 +21,7 @@ public class DropTarget : MonoBehaviour
         up.SetActive(false);
         down.SetActive(true);
         isRaised = false;
+        onDrop.Invoke();
     }
 
     public void Raise()
@@ -28,6 +29,7 @@ public class DropTarget : MonoBehaviour
         up.SetActive(true);
         down.SetActive(false);
         isRaised = true;
+        onRaise.Invoke();
     }
 
     public void Toggle()

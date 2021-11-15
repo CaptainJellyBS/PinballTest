@@ -12,6 +12,7 @@ public class FlagsMission : MonoBehaviour
     bool redFlagsUp = false, blueFlagsUp = false, greenFlagsUp = false;
     int currentFlagNumber;
     public UnityEvent allFlagsUp, flagReset;
+    public LightCycler redCycler, blueCycler, greenCycler;
 
     private void Start()
     {
@@ -30,13 +31,22 @@ public class FlagsMission : MonoBehaviour
                 if (currentFlagNumber == 2) { mainMis.AddBumperMultiplier(-1); }
                 redFlagsUp = true;
 
+                redCycler.StartFlashing();
+                blueCycler.StopFlashing();
+                greenCycler.StopFlashing();
+
                 StartCoroutine(SwitchFlags(redFlags));
                 break;
             case 1:
                 if (currentFlagNumber == 0) { mainMis.AddSpinnerMultiplier(-1); }
                 mainMis.AddSlingshotMultiplier(1);
                 if (currentFlagNumber == 2) { mainMis.AddBumperMultiplier(-1); }
-                blueFlagsUp = true;
+                greenFlagsUp = true;
+
+                redCycler.StopFlashing();
+                blueCycler.StopFlashing();
+                greenCycler.StartFlashing();
+
                 StartCoroutine(SwitchFlags(greenFlags));
 
                 break;
@@ -44,7 +54,12 @@ public class FlagsMission : MonoBehaviour
                 if (currentFlagNumber == 0) { mainMis.AddSpinnerMultiplier(-1); }
                 if (currentFlagNumber == 1) { mainMis.AddSlingshotMultiplier(-1); }
                 mainMis.AddBumperMultiplier(1);
-                greenFlagsUp = true;
+                blueFlagsUp = true;
+
+                redCycler.StopFlashing();
+                blueCycler.StartFlashing();
+                greenCycler.StopFlashing();
+
                 StartCoroutine(SwitchFlags(blueFlags));
 
                 break; 
@@ -93,8 +108,16 @@ public class FlagsMission : MonoBehaviour
         redFlagsUp = false; blueFlagsUp = false; greenFlagsUp = false;
         currentFlagNumber = -1;
 
+        redCycler.StartFlashing();
+        blueCycler.StartFlashing();
+        greenCycler.StartFlashing();
+
         yield return StartCoroutine(SwitchFlags(null));
         allFlagsUp.Invoke();
+
+        redCycler.StopFlashing();
+        blueCycler.StopFlashing();
+        greenCycler.StopFlashing();
     }
 
     public void ResetFlags()
@@ -105,6 +128,10 @@ public class FlagsMission : MonoBehaviour
         if (currentFlagNumber == 1) { mainMis.AddSlingshotMultiplier(-1); }
         if (currentFlagNumber == 2) { mainMis.AddBumperMultiplier(-1); }
         currentFlagNumber = -1;
+
+        redCycler.StopFlashing();
+        blueCycler.StopFlashing();
+        greenCycler.StopFlashing();
 
         flagReset.Invoke();
         redFlagsUp = false; blueFlagsUp = false; greenFlagsUp = false;
