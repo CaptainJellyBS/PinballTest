@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {    
     public static GameManager Instance { get; private set; }
-
+    public UnityEvent OnDrain;
+    public AudioSource ballSpawnSound, drainSound;
     long score;
     public long Score
     {
@@ -67,16 +68,21 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DieC()
     {
+        OnDrain.Invoke();
 
         yield return null;
         //Death events and the such
-        SpawnBall();
+        if (amountOfBallsLeft >= 1) 
+        { 
+            SpawnBall();
+            amountOfBallsLeft--;
+        }
+        else { GameOver(); }
     }
 
     public void SpawnBall()
     {
-        if(amountOfBallsLeft <= 0) { GameOver(); return; }
-        amountOfBallsLeft--;
+        ballSpawnSound.Play();
         activeBalls++;
         Instantiate(ball, ballSpawnPos.position, ballSpawnPos.rotation);
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DrawbridgeMission : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DrawbridgeMission : MonoBehaviour
     public float _targetAngle = -120;
     public float currentPoint = 0.0f;
     bool isDown = false;
+    public UnityEvent OnDrop;
 
     Quaternion targetAngle, startAngle, dropAngle;
 
@@ -44,6 +46,7 @@ public class DrawbridgeMission : MonoBehaviour
 
     IEnumerator DropBridge()
     {
+        OnDrop.Invoke();
         float t = 0;
         while (t <= 1.0f)
         {
