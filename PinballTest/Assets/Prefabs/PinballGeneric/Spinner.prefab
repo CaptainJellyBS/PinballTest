@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5199835819213777920}
   - component: {fileID: 3104346274785094504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BellSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1405432567897840438}
   - component: {fileID: 4133995077147902421}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WooshSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 8286321964323665372}
   - component: {fileID: 4134410604253517182}
   - component: {fileID: 1997217634480797156}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 9035186640769973866}
   - component: {fileID: 3713554223541768422}
   - component: {fileID: 9035186640769973867}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spinner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -535,7 +535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9035186642010552350}
   - component: {fileID: 9035186642010552351}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hinge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9035186642055813373}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spinner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
