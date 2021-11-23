@@ -16,6 +16,7 @@ public class Flipper : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         hj = GetComponent<HingeJoint>();
 
+        
 
         JointLimits whyDoINeedToDoThis = hj.limits;
         whyDoINeedToDoThis.max = rotation;
@@ -38,7 +39,6 @@ public class Flipper : MonoBehaviour
             fuckThis.targetPosition = 0;
             hj.spring = fuckThis;
             flipperDown.Play();
-
         }
 
     }

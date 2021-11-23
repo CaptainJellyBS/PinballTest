@@ -102,6 +102,15 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log(log);
     }
+
+    IEnumerator ShowText(Text textObj, string content, float time)
+    {
+        textObj.gameObject.SetActive(true);
+        textObj.text = content;
+        yield return new WaitForSeconds(time);
+        textObj.text = "PLACEHOLDER";
+        textObj.gameObject.SetActive(false);
+    }
     #region debug
 
     #endregion
