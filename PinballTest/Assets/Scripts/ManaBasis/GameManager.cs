@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -47,7 +48,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //debug
-        if (Input.GetKeyDown(KeyCode.R)) { SpawnBall(); }
+        if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
+
     }
 
     public void Die()
@@ -96,7 +98,15 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over");
         gameOverText.gameObject.SetActive(true);
+        StartCoroutine(GameOverC());
     }
+
+    IEnumerator GameOverC()
+    {
+        yield return new WaitForSeconds(5.0f);
+        SceneManager.LoadScene(0);
+    }
+
 
     public void DebugLog(string log)
     {

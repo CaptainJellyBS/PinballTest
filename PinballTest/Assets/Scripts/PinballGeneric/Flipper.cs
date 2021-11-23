@@ -40,6 +40,5 @@ public class Flipper : MonoBehaviour
             hj.spring = fuckThis;
             flipperDown.Play();
         }
-
     }
 }
