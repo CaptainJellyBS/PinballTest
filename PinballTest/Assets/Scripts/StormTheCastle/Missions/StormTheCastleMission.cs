@@ -6,7 +6,7 @@ using UnityEngine;
 //Handles scoring and game state of the entire Storm The Castle mission. Mission specific sequences are in their respective scripts.
 public class StormTheCastleMission : MonoBehaviour
 {
-    public float spinnerMultiplier = 1, bumperMultiplier = 1, slingshotMultiplier = 1, 
+    public float spinnerMultiplier = 1, bumperMultiplier = 1, slingshotMultiplier = 1, missionMultiplier = 1,
         dropTargetMultiplier = 1, staticTargetMultiplier = 1, scoopMultiplier = 1, scoreMultiplier = 1;
 
     #region scoring
@@ -40,6 +40,11 @@ public class StormTheCastleMission : MonoBehaviour
     public void ScoreStaticTarget(int _score)
     {
         Score((int)(_score * staticTargetMultiplier));
+    }
+
+    public void ScoreMission(int _score)
+    {
+        Score((int)(_score * missionMultiplier));
     }
 
     void Score(int _score)
@@ -77,6 +82,11 @@ public class StormTheCastleMission : MonoBehaviour
     public void AddScoopMultiplier(float _add)
     {
         scoopMultiplier += _add;
+    }
+    
+    public void AddMissionMultiplier(float _add)
+    {
+        missionMultiplier += _add;
     }
     #endregion
     #endregion

@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     {
         //debug
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
-
     }
 
     public void Die()
